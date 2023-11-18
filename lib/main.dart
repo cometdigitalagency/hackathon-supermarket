@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:save_mart/config/di/config_dependencies.dart';
 import 'package:save_mart/config/routes/routes.dart';
 import 'package:save_mart/config/routes/routes.gr.dart';
+import 'package:save_mart/core/constants/theme/color.dart';
 
 Future<void> main() async {
   await configDependencies();
@@ -16,6 +17,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: ThemeData(primaryColor: ColorConstants.mainColor),
       routerDelegate: _appRouter.delegate(
         deepLinkBuilder: (_) =>
             const DeepLink([PageRouteInfo(LoginRoute.name)]),

@@ -25,6 +25,9 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
   flutter_secure_storage: ^9.0.0
+  carousel_slider: ^4.2.1
+  dartz: ^0.10.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

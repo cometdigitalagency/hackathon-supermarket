@@ -4,5 +4,10 @@ import 'package:save_mart/config/routes/routes.gr.dart';
 @AutoRouterConfig()
 class AppRouter extends $AppRouter {
   @override
-  List<AutoRoute> get routes => [AutoRoute(page: LoginRoute.page)];
+  List<AutoRoute> get routes => [
+        AutoRoute(page: HomeRoute.page),
+        AutoRoute(page: ViewProductRoute.page),
+        AutoRoute(page: LoginRoute.page),
+        AutoRoute(page: ProductCartRoute.page),
+      ];
 }
