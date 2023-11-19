@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ProductListFailure extends StatelessWidget {
+class ProductCartFailure extends StatelessWidget {
   final String message;
-  const ProductListFailure({super.key, required this.message});
+  const ProductCartFailure({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {

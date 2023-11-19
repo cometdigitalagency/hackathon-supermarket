@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget implements AutoRouteWrapper {
               success: (responseProductEntity) => ProductListSuccess(
                     productEntity: products,
                   ),
-              failure: (message) => const ProductListFailure());
+              failure: (message) => ProductListFailure(message: message));
         },
       ),
     );

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:save_mart/core/constants/theme/color.dart';
 import 'package:save_mart/features/product_cart/presentation/cubit/product_cart_cubit.dart';
-import 'package:save_mart/features/product_cart/presentation/widget/custom_product_cart_list.dart';
+import 'package:save_mart/features/product_cart/presentation/widget/product_cart_empty.dart';
+import 'package:save_mart/features/product_cart/presentation/widget/product_cart_failure.dart';
+import 'package:save_mart/features/product_cart/presentation/widget/product_cart_loading.dart';
 
 import '../../../config/di/config_dependencies.dart';
 import 'widget/product_cart_loaded.dart';
@@ -39,12 +41,11 @@ class ProductCartScreen extends StatelessWidget implements AutoRouteWrapper {
       body: BlocBuilder<ProductCartCubit, ProductCartState>(
         builder: (context, state) {
           return state.when(
-            initial: () => ProductCartLoaded(cartData: cartData),
-            loading: () => ProductCartLoaded(cartData: cartData),
-            success: (data) => ProductCartLoaded(cartData: cartData),
-            empty: () => ProductCartLoaded(cartData: cartData),
-            failure: (message) => ProductCartLoaded(cartData: cartData),
-          );
+              initial: () => const ProductCartLoading(),
+              loading: () => const ProductCartLoading(),
+              success: (data) => ProductCartLoaded(cartData: cartData),
+              empty: () => const ProductCartEmpty(),
+              failure: (message) => ProductCartFailure(message: message));
         },
       ),
     );

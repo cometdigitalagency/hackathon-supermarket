@@ -40,8 +40,6 @@ void setMoneyLimitDialog(BuildContext context) async {
                       Navigator.pop(context);
                       getIt<AppRouter>()
                           .push(ViewProductRoute(amountMoney: price));
-                    } else {
-                      //TODO: show error
                     }
                   }
                 }

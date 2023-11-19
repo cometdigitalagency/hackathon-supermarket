@@ -30,18 +30,5 @@ class ProductCartLoaded extends StatelessWidget {
               );
             })
         : Container();
-    // return const Placeholder();
-    // return Padding(
-    //   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-    //   child: Column(
-    //     children: [
-    //       CustomProductCartList(
-    //         title: 'Product name',
-    //         subtitle: 'Product price',
-    //         onPressed: () {},
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }

@@ -38,7 +38,7 @@ abstract class $AppRouter extends _i5.RootStackRouter {
     ProductCartRoute.name: (routeData) {
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.ProductCartScreen(),
+        child: _i5.WrappedRoute(child: const _i3.ProductCartScreen()),
       );
     },
     ViewProductRoute.name: (routeData) {

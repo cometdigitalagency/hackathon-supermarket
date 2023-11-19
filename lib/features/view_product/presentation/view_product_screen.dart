@@ -7,6 +7,7 @@ import 'package:save_mart/config/routes/routes.gr.dart';
 import 'package:save_mart/core/constants/theme/color.dart';
 
 import 'package:save_mart/features/view_product/presentation/widget/custom_view_money_card.dart';
+import 'package:save_mart/features/view_product/presentation/widget/view_product_failure.dart';
 import 'package:save_mart/features/view_product/presentation/widget/view_product_success.dart';
 
 import 'cubit/view_product_cubit.dart';
@@ -58,12 +59,15 @@ class ViewProductScreen extends StatelessWidget implements AutoRouteWrapper {
               BlocBuilder<ViewProductCubit, ViewProductState>(
                 builder: (context, state) {
                   return state.when(
-                      initial: () => const ViewProductLoading(),
-                      loading: () => const ViewProductLoading(),
-                      success: (products) =>
-                          ViewProductSuccess(products: products),
-                      empty: () => const ViewProductLoading(),
-                      failure: (message) => const ViewProductLoading());
+                    initial: () => const ViewProductLoading(),
+                    loading: () => const ViewProductLoading(),
+                    success: (products) =>
+                        ViewProductSuccess(products: products),
+                    empty: () => const ViewProductLoading(),
+                    failure: (message) => ViewProductFailure(
+                      message: message,
+                    ),
+                  );
                 },
               )
             ],
