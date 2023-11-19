@@ -14,17 +14,19 @@ class HomeScreen extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.watch<ResponseProductCubit>();
+    final products = cubit.products;
     return Scaffold(
       body: BlocBuilder<ResponseProductCubit, ResponseProductState>(
         builder: (context, state) {
-          print("Current State : $state");
+          // print("Current State : $state");
           return state.when(
-              initial: () => ProductListLoading(),
-              loading: () => ProductListLoading(),
+              initial: () => const ProductListLoading(),
+              loading: () => const ProductListLoading(),
               success: (responseProductEntity) => ProductListSuccess(
-                    productEntity: responseProductEntity,
+                    productEntity: products,
                   ),
-              failure: (message) => ProductListFailure());
+              failure: (message) => const ProductListFailure());
         },
       ),
     );

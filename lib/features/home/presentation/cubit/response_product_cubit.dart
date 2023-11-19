@@ -5,6 +5,8 @@ import 'package:save_mart/core/usecase/change_pin_usecase.dart';
 import 'package:save_mart/features/home/domain/entities/response_product_entity.dart';
 import 'package:save_mart/features/home/domain/usecase/response_product_usecase.dart';
 
+import '../../data/model/response_product_model.dart';
+
 part 'response_product_state.dart';
 part 'response_product_cubit.freezed.dart';
 
@@ -14,6 +16,8 @@ class ResponseProductCubit extends Cubit<ResponseProductState> {
   ResponseProductCubit(this._productUseCase)
       : super(const ResponseProductState.initial());
 
+  List<Product> _products = [];
+
   Future<void> initialFetchProductMethod() async {
     await fetchProduct();
   }
@@ -22,7 +26,17 @@ class ResponseProductCubit extends Cubit<ResponseProductState> {
     emit(const ResponseProductState.loading());
     final data = await _productUseCase(Noparams());
     data.fold((l) => emit(ResponseProductState.failure(l.message)), (r) {
-      emit(ResponseProductState.success(r));
+      _products = r.products;
+      emit(ResponseProductState.success(r.products));
     });
   }
+
+  Future<void> flitterProductByPrice(double price) async {
+    emit(const ResponseProductState.loading());
+    final data = _products.where((element) => element.price < price).toList();
+    _products = data;
+    emit(ResponseProductState.success(data));
+  }
+
+  List<Product> get products => _products;
 }

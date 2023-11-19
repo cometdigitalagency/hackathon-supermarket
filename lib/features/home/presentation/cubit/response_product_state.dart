@@ -6,7 +6,7 @@ class ResponseProductState with _$ResponseProductState {
   const factory ResponseProductState.loading() = _Loading;
 
   const factory ResponseProductState.success(
-      ResponseProductEntity responseProductEntity) = _Success;
+      List<Product> responseProductEntity) = _Success;
 
   const factory ResponseProductState.failure(String message) = _Failure;
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:save_mart/core/constants/theme/color.dart';
-import 'package:save_mart/features/home/domain/entities/response_product_entity.dart';
+import 'package:save_mart/features/home/data/model/response_product_model.dart';
 import 'package:save_mart/features/home/presentation/widget/custom_banner_slide.dart';
 import 'package:save_mart/features/home/presentation/widget/custom_choice_box.dart';
 import 'package:save_mart/features/home/presentation/widget/custom_product_box.dart';
@@ -9,7 +9,7 @@ import 'package:save_mart/features/set_money_limit/set_money_limit_dialog.dart';
 import 'package:save_mart/features/widget/custom_search_box.dart';
 
 class ProductListSuccess extends StatelessWidget {
-  final ResponseProductEntity productEntity;
+  final List<Product> productEntity;
   const ProductListSuccess({super.key, required this.productEntity});
 
   @override
@@ -43,7 +43,12 @@ class ProductListSuccess extends StatelessWidget {
                     const SizedBox(width: 10),
                     Expanded(
                         child: CustomChoiceBox(
-                      onPressed: () => setMoneyLimitDialog(context),
+                      onPressed: () => setMoneyLimitDialog(
+                        context,
+                        // onSummit: (double value) =>
+                        //     getIt<ResponseProductCubit>()
+                        //         .flitterProductByPrice(value)
+                      ),
                       title: 'ເບິ່ງສິນຄ້າຕາມວົງເງີນ',
                       icon: Icons.shopify_rounded,
                     )),
@@ -59,13 +64,15 @@ class ProductListSuccess extends StatelessWidget {
                     mainAxisSpacing: 30,
                     crossAxisSpacing: 10,
                   ),
-                  itemCount: productEntity.products.length,
+                  itemCount: productEntity.length,
                   itemBuilder: (context, index) {
                     return CustomProductBox(
-                      price: productEntity.products[index].price.toString(),
-                      name: productEntity.products[index].title,
-                      image:
-                          NetworkImage(productEntity.products[index].images[0]),
+                      id: productEntity[index].id.toString(),
+                      price: double.tryParse(
+                              productEntity[index].price.toString()) ??
+                          0.0,
+                      name: productEntity[index].title,
+                      image: productEntity[index].thumbnail,
                     );
                   },
                 )

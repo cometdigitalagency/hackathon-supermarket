@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:save_mart/features/set_money_limit/widget/money_format.dart';
 
 class CustomSetMoneyField extends StatelessWidget {
   final TextEditingController controller;
@@ -21,10 +20,6 @@ class CustomSetMoneyField extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             borderSide: const BorderSide(color: Colors.red)),
       ),
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
-        LaoCurrencyFormatter(),
-      ],
       validator: (value) {
         if (value == "") {
           return 'ກະລຸນາປ້ອນຈຳນວນເງີນຂອງທ່ານ!!';

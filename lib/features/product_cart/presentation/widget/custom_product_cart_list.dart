@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CustomProductCartList extends StatelessWidget {
+  final String image;
   final String title;
-  final String subtitle;
+  final String price;
   final Function() onPressed;
-  const CustomProductCartList(
-      {super.key,
-      required this.title,
-      required this.subtitle,
-      required this.onPressed});
+  final int quantity;
+  const CustomProductCartList({
+    super.key,
+    required this.title,
+    required this.price,
+    required this.onPressed,
+    required this.image,
+    required this.quantity,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,18 @@ class CustomProductCartList extends StatelessWidget {
           children: [
             Row(
               children: [
-                const CircleAvatar(),
+                CircleAvatar(
+                  // child: Image.network(image),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100.0),
+                      image: DecorationImage(
+                        image: NetworkImage(image),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
                 const SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +46,11 @@ class CustomProductCartList extends StatelessWidget {
                           fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     Text(
-                      subtitle,
+                      price,
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                    Text(
+                      "x ${quantity.toString()}",
                       style: const TextStyle(color: Colors.grey),
                     )
                   ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:save_mart/core/constants/theme/color.dart';
 
 class CustomViewMoneyCard extends StatelessWidget {
-  final String moneyAmount;
+  final double moneyAmount;
   const CustomViewMoneyCard({super.key, required this.moneyAmount});
 
   @override
@@ -26,7 +26,7 @@ class CustomViewMoneyCard extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               Text(
-                moneyAmount,
+                moneyAmount.toString(),
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 22,

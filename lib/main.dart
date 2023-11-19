@@ -19,8 +19,7 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       theme: ThemeData(primaryColor: ColorConstants.mainColor),
       routerDelegate: _appRouter.delegate(
-        deepLinkBuilder: (_) =>
-            const DeepLink([PageRouteInfo(LoginRoute.name)]),
+        deepLinkBuilder: (_) => const DeepLink([PageRouteInfo(HomeRoute.name)]),
       ),
       routeInformationParser: _appRouter.defaultRouteParser(),
     );

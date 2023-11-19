@@ -9,42 +9,47 @@ void setMoneyLimitDialog(BuildContext context) async {
   final formKey = GlobalKey<FormState>();
   final enterMoney = TextEditingController();
   showDialog(
-      context: context,
-      builder: (context) {
-        var customSetMoneyField = CustomSetMoneyField(
-          controller: enterMoney,
-        );
-        return SimpleDialog(
-          children: [
-            const Text(
-              "ກະລຸນາປ້ອນຈຳນວນເງີນ",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    context: context,
+    builder: (context) {
+      return SimpleDialog(
+        children: [
+          const Text(
+            "ກະລຸນາປ້ອນຈຳນວນເງີນ",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+            child: Form(
+              key: formKey,
+              child: CustomSetMoneyField(controller: enterMoney),
             ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-              child: Form(
-                key: formKey,
-                child: customSetMoneyField,
-              ),
-            ),
-            const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-              child: CustomButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate() != false) {
-                    final amountMoney = enterMoney.text.trim();
-                    getIt<AppRouter>()
-                        .push(ViewProductRoute(amountMoney: amountMoney));
-                    Navigator.pop(context);
+          ),
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+            child: CustomButton(
+              title: 'ຕົກລົງ',
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  String amountMoney = enterMoney.text.trim();
+                  if (amountMoney != "") {
+                    double price = double.parse(amountMoney);
+                    if (price != 0.0) {
+                      Navigator.pop(context);
+                      getIt<AppRouter>()
+                          .push(ViewProductRoute(amountMoney: price));
+                    } else {
+                      //TODO: show error
+                    }
                   }
-                },
-                title: 'ຕົກລົງ',
-              ),
-            )
-          ],
-        );
-      });
+                }
+              },
+            ),
+          )
+        ],
+      );
+    },
+  );
 }

@@ -12,8 +12,6 @@ import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 import 'package:save_mart/features/auth/login/presentation/login_screen.dart'
     as _i2;
-import 'package:save_mart/features/home/domain/entities/response_product_entity.dart'
-    as _i7;
 import 'package:save_mart/features/home/presentation/home_screen.dart' as _i1;
 import 'package:save_mart/features/product_cart/presentation/product_cart_screen.dart'
     as _i3;
@@ -47,11 +45,11 @@ abstract class $AppRouter extends _i5.RootStackRouter {
       final args = routeData.argsAs<ViewProductRouteArgs>();
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i4.ViewProductScreen(
+        child: _i5.WrappedRoute(
+            child: _i4.ViewProductScreen(
           key: args.key,
           amountMoney: args.amountMoney,
-          productEntity: args.productEntity,
-        ),
+        )),
       );
     },
   };
@@ -104,15 +102,13 @@ class ProductCartRoute extends _i5.PageRouteInfo<void> {
 class ViewProductRoute extends _i5.PageRouteInfo<ViewProductRouteArgs> {
   ViewProductRoute({
     _i6.Key? key,
-    required String amountMoney,
-    _i7.ResponseProductEntity? productEntity,
+    required double amountMoney,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           ViewProductRoute.name,
           args: ViewProductRouteArgs(
             key: key,
             amountMoney: amountMoney,
-            productEntity: productEntity,
           ),
           initialChildren: children,
         );
@@ -127,17 +123,14 @@ class ViewProductRouteArgs {
   const ViewProductRouteArgs({
     this.key,
     required this.amountMoney,
-    this.productEntity,
   });
 
   final _i6.Key? key;
 
-  final String amountMoney;
-
-  final _i7.ResponseProductEntity? productEntity;
+  final double amountMoney;
 
   @override
   String toString() {
-    return 'ViewProductRouteArgs{key: $key, amountMoney: $amountMoney, productEntity: $productEntity}';
+    return 'ViewProductRouteArgs{key: $key, amountMoney: $amountMoney}';
   }
 }
