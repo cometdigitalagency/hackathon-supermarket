@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/http.dart';
 import 'package:save_mart/core/constants/api/api_constant.dart';
-import 'package:save_mart/features/home/data/model/response_product_model.dart';
+import 'package:save_mart/data/model/response_product_model.dart';
 
 part 'product_service.g.dart';
 

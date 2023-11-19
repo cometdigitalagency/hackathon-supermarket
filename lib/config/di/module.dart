@@ -1,13 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
-import 'package:save_mart/config/routes/routes.dart';
 
 @module
 abstract class InjectableModule {
-  @lazySingleton
-  AppRouter get routes => AppRouter();
-
   @lazySingleton
   Dio dio() {
     final dio = Dio();
